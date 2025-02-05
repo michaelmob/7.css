@@ -1,6 +1,7 @@
 :root {
   --listview-chevron-size: 5px;
   --listview-background: #ffffff;
+  --listview-selected-background: #3399ff;
   --listview-border: 1px solid;
   --listview-border-color: #eeeeee;
   --listview-border-color-header: #d7d7d7;
@@ -58,11 +59,16 @@ table {
     top: 0;
     cursor: default;
 
-    &.highlighted {
+    &.active,
+    &:active {
+      background: var(--button-gradient-active) !important;
+    }
+
+    &.highlighted,
+    &:hover {
       border: var(--listview-border)
         var(--listview-header-border-color-highlight);
       background: var(--listview-header-gradient-highlight);
-      border-radius: var(--border-radius);
 
       &:not(:last-child) {
         border-right-color: var(--listview-header-border-color-highlight);
@@ -88,15 +94,26 @@ table {
 
   > tbody > tr {
     cursor: default;
+    border-top: var(--listview-border) var(--listview-border-color);
 
-    &.highlighted {
+    &.active,
+    &:active {
+      border: 1px dotted var(--listview-border-color);
+      background: var(--listview-selected-background) !important;
+      color: white;
+    }
+
+    &.highlighted,
+    &:hover {
       border: var(--listview-border) var(--item-highlighted-border);
       background: var(--item-highlighted-background);
       border-radius: var(--border-radius);
 
+      /*
       > *:not(:last-child) {
-        border-right: none;
+        border-right: var(--listview-border) var(--item-highlighted-border);
       }
+        */
     }
 
     > * {
